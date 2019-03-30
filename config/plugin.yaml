@@ -1,4 +1,7 @@
----
+options:
+  noEmptyString: true
+common:
+  formXmlCompliant: true
 basicAuth: true # get credentials from config and add basic auth
 # This block refers to auto help generation
 help:
@@ -15,6 +18,10 @@ procedures:
     method: POST
     hasConfig: true
     attachCredentials: true
+    contentType: application/json
+    outputParameters:
+      incident: JSON representation of the created incident
+      incidentId: Incident ID of the created incident
     basicAuth: true
      # credentials will be turned into basic auth header
     canSkipAuth: true
@@ -26,8 +33,7 @@ procedures:
         documentation: Incident title
         required: 1
       - property: briefDescription
-        type: entry
+        type: textarea
         label: Brief Description
         required: 1
         documentation: Brief Description.
- 

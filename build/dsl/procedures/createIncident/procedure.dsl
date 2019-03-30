@@ -12,7 +12,7 @@ EC::TOPdesk::Plugin->new->run_step('createIncident');
         releaseMode: 'none',
         shell: 'ec-perl',
         timeLimitUnits: 'minutes'
-    
+
     // [REST Plugin Wizard step ends]
     // [Output Parameters Begin]
 

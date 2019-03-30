@@ -22,7 +22,7 @@
   <label>Brief Description:</label>
   <property>briefDescription</property>
   <required>1</required>
-  <type>entry</type>
+  <type>textarea</type>
   <value></value>
 </formElement>
 

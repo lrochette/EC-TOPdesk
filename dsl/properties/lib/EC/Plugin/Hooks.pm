@@ -81,6 +81,33 @@ Available hooks types:
 
 sub define_hooks {
     my ($self) = @_;
+
+    $self->define_hook('createIncident', 'request', \&createIncident);
+}
+
+sub createIncident {
+  my ($self, $request) = @_;
+
+  use Data::Dumper;
+  print Dumper ($request);
+
+  my $config = $self->plugin->get_config_values($self->plugin->parameters->{config});
+  print Dumper $config;
+
+  my $url=$config->{instance} . "/tas/api/incidents";
+  my $request2 = $self->plugin->get_new_http_request('POST', $url);
+  print Dumper $request2;
+  my $response = $self->plugin->request($self->plugin->current_step_name, $request2);
+  print Dumnper $response;
+  if ($response->is_success) {
+    my $values = decode_json($response->content)->{values};
+    $self->plugin->logger->info("Create Incident", $values);
+    $self->plugin->ec->setOutputParameter('incident', JSON->new->pretty->utf8->encode($values));
+    # $self->plugin->ec->setOutputParameter('entryId', $entry_id);
+  }
+  else {
+    $self->plugin->bail_out("Request failed: " . $response->status_line);
+  }
 }
 
 1;
