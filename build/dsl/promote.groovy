@@ -20,7 +20,6 @@ def stepsWithAttachedCredentials = [
 // ** end steps with attached credentials
 
 project pluginName, {
-	property 'ec_formXmlCompliant', value: 'true'
 	loadPluginProperties(pluginDir, pluginName)
 	loadProcedures(pluginDir, pluginKey, pluginName, stepsWithAttachedCredentials)
 	//plugin configuration metadata

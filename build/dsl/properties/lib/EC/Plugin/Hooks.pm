@@ -82,24 +82,24 @@ Available hooks types:
 sub define_hooks {
     my ($self) = @_;
 
-    $self->define_hook('createIncident', 'request', \&createIncident);
-
+    $self->define_hook('createOperatorChange', 'request', \&createOperatorChange);
 }
 
-sub createIncident {
+sub createOperatorChange {
   my ($self, $request) = @_;
 
   use Data::Dumper;
-  print Dumper ($request);
+  #print "##LR Request:" . Dumper ($request);
 
   my $config = $self->plugin->get_config_values($self->plugin->parameters->{config});
-  print Dumper $config;
+  print "##LR Config:" . Dumper $config;
 
-  my $url=$config->{instance} . "/tas/api/incidents";
-  my $request2 = $self->plugin->get_new_http_request('POST', $url);
-  print Dumper $request2;
-  my $response = $self->plugin->request($self->plugin->current_step_name, $request2);
-  print Dumnper $response;
+  # my $url=$config->{instance} . "/operatorChangess";
+  # my $request2 = $self->plugin->get_new_http_request('POST', $url);
+  $request->header('Content-Type' => 'application/json');
+  print "##LR Request:" . Dumper $request;
+  my $response = $self->plugin->request($self->plugin->current_step_name, $request);
+  print "##LR Response:" . Dumper $response;
   if ($response->is_success) {
     my $values = decode_json($response->content)->{values};
     $self->plugin->logger->info("Create Incident", $values);

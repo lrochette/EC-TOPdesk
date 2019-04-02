@@ -12,7 +12,7 @@
         <h1>@PLUGIN_KEY@</h1>
         <p>Plugin Version @PLUGIN_VERSION@</p>
         <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
-        <p>Revised on <!-- REVISION DATE BEGIN -->February 28, 2019<!-- REVISION DATE END --></p>
+        <p>Revised on <!-- REVISION DATE BEGIN -->April 2, 2019<!-- REVISION DATE END --></p>
         <p>
             <!-- DESCRIPTION BEGIN -->Electric Flow integration for TOPdesk<!-- DESCRIPTION END -->
         </p>
@@ -22,7 +22,7 @@
 <!-- LINKS END -->
         <h1>Contents</h1>
         <ul>
-        <!-- TOC BEGIN --><li><a href="#createIncident">createIncident</a></li><!-- TOC END -->
+        <!-- TOC BEGIN --><li><a href="#createOperatorChange">createOperatorChange</a></li><!-- TOC END -->
         </ul>
         <h2>Configuration</h2>
         <div id="CreateConfiguration">
@@ -100,13 +100,13 @@
         </div>
         <h1>Procedures</h1>
         <!-- PROCEDURES BEGIN -->
-            <div id="createIncident">
-                <a name="createIncident" id="createIncident" />
-                <!-- createIncident METADATA BEGIN -->
-            <h3>createIncident</h3>
-            <p>Create a new incident.</p>
-                <!-- createIncident METADATA END -->
-                <!-- createIncident BEGIN -->
+            <div id="createOperatorChange">
+                <a name="createOperatorChange" id="createOperatorChange" />
+                <!-- createOperatorChange METADATA BEGIN -->
+            <h3>createOperatorChange</h3>
+            <p>Create a new change for an operator.</p>
+                <!-- createOperatorChange METADATA END -->
+                <!-- createOperatorChange BEGIN -->
             <table class="grid">
                 <thead>
                     <tr>
@@ -127,9 +127,13 @@
                     <td class="required">Brief Description</td>
                     <td>Brief Description.</td>
                 </tr>
+                <tr>
+                    <td class="required">Change payload</td>
+                    <td>The JSON content of the operator change to create.</td>
+                </tr>
                  </tbody>
             </table>
-                <!-- createIncident END -->
+                <!-- createOperatorChange END -->
             </div>
 <!-- PROCEDURES END -->
     </div>

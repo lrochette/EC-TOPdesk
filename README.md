@@ -4,9 +4,9 @@ Electric Flow integration for TOPdesk
 
 # Procedures
 
-## createIncident
+## createOperatorChange
 
-Create a new incident.
+Create a new change for an operator.
 
 
 

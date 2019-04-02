@@ -1,17 +1,23 @@
 {
-   "createIncident" : {
+   "createOperatorChange" : {
       "attachCredentials" : "true",
       "basicAuth" : "true",
       "canSkipAuth" : "true",
-      "description" : "Create a new incident.",
-      "endpoint" : "#{{instance}}/tas/api/incidents",
+      "contentType" : "application/json",
+      "description" : "Create a new change for an operator.",
+      "endpoint" : "#{{instance}}/operatorChanges",
       "fields" : [
          "title",
-         "briefDescription"
+         "briefDescription",
+         "payload"
       ],
       "hasConfig" : "true",
       "method" : "POST",
-      "name" : "createIncident",
+      "name" : "createOperatorChange",
+      "outputParameters" : {
+         "change" : "JSON representation of the created operator change",
+         "changeId" : "Change ID of the created operator change"
+      },
       "parameters" : [
          {
             "documentation" : "Incident title",
@@ -25,10 +31,19 @@
             "label" : "Brief Description",
             "property" : "briefDescription",
             "required" : "1",
-            "type" : "entry"
+            "type" : "textarea"
+         },
+         {
+            "documentation" : "The JSON content of the operator change to create.",
+            "label" : "Change payload",
+            "property" : "payload",
+            "required" : "1",
+            "type" : "textarea"
          }
       ],
-      "stepName" : "createIncident"
+      "stepName" : "createOperatorChange"
    },
-   "options" : null
+   "options" : {
+      "noEmptyString" : "true"
+   }
 }

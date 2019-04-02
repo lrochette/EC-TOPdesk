@@ -11,17 +11,22 @@ help:
     - https://developers.topdesk.com/
   hasConfig: true
 procedures:
-  - name: createIncident
-    stepName: createIncident
-    description: Create a new incident.
-    endpoint: '#{{instance}}/tas/api/incidents'
+  - name: createOperatorChange
+    stepName: createOperatorChange
+    description: Create a new change for an operator.
+    endpoint: '#{{instance}}/operatorChanges'
     method: POST
     hasConfig: true
     attachCredentials: true
+    payload: |
+    {"briefDescription" : "#{title}",
+     "request" : "#{briefDescription}",
+     "#{data}"
+    }
     contentType: application/json
     outputParameters:
-      incident: JSON representation of the created incident
-      incidentId: Incident ID of the created incident
+      change: JSON representation of the created operator change
+      changeId: Change ID of the created operator change
     basicAuth: true
      # credentials will be turned into basic auth header
     canSkipAuth: true
@@ -30,10 +35,15 @@ procedures:
       - property: title
         type: entry
         label: Incident title
-        documentation: Incident title
+        documentation: Change title (limited to 80 characters)
         required: 1
       - property: briefDescription
         type: textarea
-        label: Brief Description
+        label: Brief Description fo the change
         required: 1
         documentation: Brief Description.
+      - property: data
+        type: textarea
+        label: Change payload
+        required: 1
+        documentation: The JSON content of the operator change to create.

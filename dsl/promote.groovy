@@ -15,12 +15,11 @@ def pluginDir = getProperty("/projects/$pluginName/pluginDir").value
 //List of procedure steps to which the plugin configuration credentials need to be attached
 // ** steps with attached credentials
 def stepsWithAttachedCredentials = [
-  [procedureName: 'createIncident', stepName: 'createIncident']
+  [procedureName: 'createOperatorChange', stepName: 'createOperatorChange']
 ]
 // ** end steps with attached credentials
 
 project pluginName, {
-  property 'ec_keepFilesExtensions', value: 'true' // Needed to keep files extensions in the properties names (by default extensions are removed)	property 'ec_formXmlCompliant', value: 'true'
 	loadPluginProperties(pluginDir, pluginName)
 	loadProcedures(pluginDir, pluginKey, pluginName, stepsWithAttachedCredentials)
 	//plugin configuration metadata
