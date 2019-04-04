@@ -14,15 +14,10 @@ procedures:
   - name: createOperatorChange
     stepName: createOperatorChange
     description: Create a new change for an operator.
-    endpoint: '#{{instance}}/operatorChanges'
+    endpoint: '#{{instance}}/tas/api/operatorChanges'
     method: POST
     hasConfig: true
     attachCredentials: true
-    payload: |
-    {"briefDescription" : "#{title}",
-     "request" : "#{briefDescription}",
-     "#{data}"
-    }
     contentType: application/json
     outputParameters:
       change: JSON representation of the created operator change
@@ -32,18 +27,9 @@ procedures:
     canSkipAuth: true
      # if no credentials found, the procedure won't fail, the request will be made without credentials
     parameters:
-      - property: title
-        type: entry
-        label: Incident title
-        documentation: Change title (limited to 80 characters)
-        required: 1
-      - property: briefDescription
-        type: textarea
-        label: Brief Description fo the change
-        required: 1
-        documentation: Brief Description.
-      - property: data
+      - property: payload
         type: textarea
         label: Change payload
         required: 1
+        value: {}
         documentation: The JSON content of the operator change to create.

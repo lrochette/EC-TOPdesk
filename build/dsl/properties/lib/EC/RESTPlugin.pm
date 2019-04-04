@@ -36,7 +36,7 @@ If this property exists, it will set the debug level. Otherwize debug level will
 sub after_init_hook {
     my ($self, %params) = @_;
 
-    $self->{plugin_name} = 'EC-TOPdesk-0.0.2.15';
+    $self->{plugin_name} = 'EC-TOPdesk-0.0.2.32';
     $self->{plugin_key} = 'EC-TOPdesk';
     $self->{last_run_data} = undef;
     my $debug_level = 0;
@@ -616,7 +616,7 @@ sub get_config_values {
     my ($self, $config_name) = @_;
 
     die 'No config name' unless $config_name;
-    my $plugin_project_name = 'EC-TOPdesk-0.0.2.15';
+    my $plugin_project_name = 'EC-TOPdesk-0.0.2.32';
     my $config_property_sheet = "/projects/$plugin_project_name/ec_plugin_cfgs/$config_name";
     my $property_sheet_id = $self->ec->getProperty($config_property_sheet)->findvalue('//propertySheetId')->string_value;
 

@@ -78,37 +78,75 @@ Available hooks types:
 =cut
 
 # autogen end
+use Data::Dumper;
+use JSON;
 
 sub define_hooks {
     my ($self) = @_;
 
-    $self->define_hook('createOperatorChange', 'request', \&createOperatorChange);
+    $self->define_hook('*', 'request', \&expand_generic_parameters);
+    $self->define_hook('*', 'response', \&parse_json_error);
+    $self->define_hook('createOperatorChange', 'parameters', \&createOperatorChange);
+}
+
+sub expand_generic_parameters {
+    my ($self, $request) = @_;
+
+    my $parameters = $self->plugin->parameters();
+
+    my %req_params = $request->uri->query_form();
+
+    if ($parameters->{fields}){
+        $req_params{fields} = "values($parameters->{fields})";
+    }
+    if ($parameters->{expand}){
+        # $req_params{}
+    }
+
+    $request->uri->query_form(%req_params);
+
+    return $request;
+}
+
+sub parse_json_error {
+    my ($self, $response) = @_;
+
+    return if $response->is_success;
+
+    my $json;
+    eval {
+        $json = decode_json($response->content);
+        1;
+    } or do {
+        return;
+    };
+
+    my $formatted_response = JSON->new->utf8->pretty->encode($json);
+    $self->plugin->logger->info('Got error', $formatted_response);
+    my $message = $json->[0]->{messageText};
+    if ($message) {
+        $self->plugin->bail_out($message);
+    }
 }
 
 sub createOperatorChange {
-  my ($self, $request) = @_;
 
-  use Data::Dumper;
-  #print "##LR Request:" . Dumper ($request);
+    my ($self, $params) = @_;
 
-  my $config = $self->plugin->get_config_values($self->plugin->parameters->{config});
-  print "##LR Config:" . Dumper $config;
+    my $values;
+    eval {
+        $values = decode_json($params->{values});
+        1;
+    } or do{
+        $self->plugin->bail_out("Values should be a valid JSON object: $@");
+    };
 
-  # my $url=$config->{instance} . "/operatorChangess";
-  # my $request2 = $self->plugin->get_new_http_request('POST', $url);
-  $request->header('Content-Type' => 'application/json');
-  print "##LR Request:" . Dumper $request;
-  my $response = $self->plugin->request($self->plugin->current_step_name, $request);
-  print "##LR Response:" . Dumper $response;
-  if ($response->is_success) {
-    my $values = decode_json($response->content)->{values};
-    $self->plugin->logger->info("Create Incident", $values);
-    $self->plugin->ec->setOutputParameter('incident', JSON->new->pretty->utf8->encode($values));
-    # $self->plugin->ec->setOutputParameter('entryId', $entry_id);
-  }
-  else {
-    $self->plugin->bail_out("Request failed: " . $response->status_line);
-  }
+    unless($values->{values}) {
+        $values = {values => $values};
+    }
+
+    $params->{values} = encode_json($values);
+    return $params;
 }
 
 1;

@@ -53,7 +53,7 @@ my $pluginName = "${pluginKey}-${pluginVersion}";
 
 
 print "[INFO] - Cleaning\n";
-system("clean.sh");
+system("./clean.sh");
 
 print "[INFO] - Creating plugin '$pluginName'\n";
 

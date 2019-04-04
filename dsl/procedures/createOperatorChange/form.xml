@@ -11,22 +11,6 @@
   <type>entry</type>
 </formElement>
 <formElement>
-  <documentation>Incident title.</documentation>
-  <label>Incident title:</label>
-  <property>title</property>
-  <required>1</required>
-  <type>entry</type>
-  <value></value>
-</formElement>
-<formElement>
-  <documentation>Brief Description.</documentation>
-  <label>Brief Description:</label>
-  <property>briefDescription</property>
-  <required>1</required>
-  <type>textarea</type>
-  <value></value>
-</formElement>
-<formElement>
   <documentation>The JSON content of the operator change to create.</documentation>
   <label>Change payload:</label>
   <property>payload</property>

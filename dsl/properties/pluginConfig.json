@@ -5,10 +5,8 @@
       "canSkipAuth" : "true",
       "contentType" : "application/json",
       "description" : "Create a new change for an operator.",
-      "endpoint" : "#{{instance}}/operatorChanges",
+      "endpoint" : "#{{instance}}/tas/api/operatorChanges",
       "fields" : [
-         "title",
-         "briefDescription",
          "payload"
       ],
       "hasConfig" : "true",
@@ -20,25 +18,12 @@
       },
       "parameters" : [
          {
-            "documentation" : "Incident title",
-            "label" : "Incident title",
-            "property" : "title",
-            "required" : "1",
-            "type" : "entry"
-         },
-         {
-            "documentation" : "Brief Description.",
-            "label" : "Brief Description",
-            "property" : "briefDescription",
-            "required" : "1",
-            "type" : "textarea"
-         },
-         {
             "documentation" : "The JSON content of the operator change to create.",
             "label" : "Change payload",
             "property" : "payload",
             "required" : "1",
-            "type" : "textarea"
+            "type" : "textarea",
+            "value" : {}
          }
       ],
       "stepName" : "createOperatorChange"
