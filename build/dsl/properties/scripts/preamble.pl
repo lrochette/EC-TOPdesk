@@ -24,7 +24,7 @@ BEGIN {
         # Undo perl'd require transformation
         my $prop = $target;
         $prop =~ s#\.pm$##;
-        my $display = '[EC]EC-TOPdesk-0.0.2.32/'.$prop;
+        my $display = '[EC]EC-TOPdesk-0.0.2.33/'.$prop;
         $prop = "$prefix$prop";
         my $code = eval {
             $ec->getProperty("$prop")->findvalue('//value')->string_value;

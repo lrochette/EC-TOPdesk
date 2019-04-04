@@ -85,7 +85,14 @@ Code may look like the following:
 # autogen code ends here
 
 sub define_processors {
+  my ($self) = @_;
+  $self->define_processor('createOperatorChange', 'serialize_body', \&raw_body);
+}
 
+sub raw_body {
+  my ($self, $body) = @_;
+  my $data = $body->{payload};
+  return $data;
 }
 
 1;
