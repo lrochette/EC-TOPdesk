@@ -10,9 +10,9 @@
 <body>
     <div class="help">
         <h1>EC-TOPdesk</h1>
-        <p>Plugin Version 0.0.2.33</p>
+        <p>Plugin Version 0.0.2.34</p>
         <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
-        <p>Revised on <!-- REVISION DATE BEGIN -->April 3, 2019<!-- REVISION DATE END --></p>
+        <p>Revised on <!-- REVISION DATE BEGIN -->April 4, 2019<!-- REVISION DATE END --></p>
         <p>
             <!-- DESCRIPTION BEGIN -->Electric Flow integration for TOPdesk<!-- DESCRIPTION END -->
         </p>

@@ -4,7 +4,7 @@ class EFPlugin {
     ElectricFlow ef = new ElectricFlow()
 
     def getConfiguration(configName) {
-        Map configuration = ef.getProperties(path: '/projects/EC-TOPdesk-0.0.2.33/ec_plugin_cfgs/' + configName)?.propertySheet?.property?.collectEntries {
+        Map configuration = ef.getProperties(path: '/projects/EC-TOPdesk-0.0.2.34/ec_plugin_cfgs/' + configName)?.propertySheet?.property?.collectEntries {
             [it.propertyName, it.value]
         }
         def credential = ef.getFullCredential(credentialName: configName)

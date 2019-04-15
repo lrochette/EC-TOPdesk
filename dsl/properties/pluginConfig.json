@@ -19,6 +19,7 @@
       "parameters" : [
          {
             "documentation" : "The JSON content of the operator change to create.",
+            "in" : "body",
             "label" : "Change payload",
             "property" : "payload",
             "required" : "1",

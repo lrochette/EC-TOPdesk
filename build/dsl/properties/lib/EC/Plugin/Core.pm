@@ -575,7 +575,7 @@ sub get_config_values {
     my ($self, $config_name) = @_;
 
     die 'No config name' unless $config_name;
-    my $plugin_project_name = 'EC-TOPdesk-0.0.2.33';
+    my $plugin_project_name = 'EC-TOPdesk-0.0.2.34';
     my $config_property_sheet = "/projects/$plugin_project_name/ec_plugin_cfgs/$config_name";
     my $property_sheet_id = eval { $self->ec->getProperty($config_property_sheet)->findvalue('//propertySheetId')->string_value };
     if ($@) {

@@ -31,5 +31,6 @@ procedures:
         type: textarea
         label: Change payload
         required: 1
+        in: body
         value: {}
         documentation: The JSON content of the operator change to create.
